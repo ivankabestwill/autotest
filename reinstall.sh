@@ -31,6 +31,7 @@ if [ "$?" != "0" ] ; then
 fi
 
 ./nta_uninstall.sh >/dev/null 2>/dev/null
+rm -fr /opt/hansight >/dev/null 2>/dev/null
 ./nta_install.sh >/dev/null 2>/dev/null
 
 
