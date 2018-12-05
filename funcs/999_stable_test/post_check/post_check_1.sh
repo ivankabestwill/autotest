@@ -193,8 +193,8 @@ fi
 # ##########################################
 # check pop3
 # ##########################################
-pid=`pgrep pop3_parser`
-if [ "$pid" == "" ] ; then
+flag=`pgrep pop3_parser`
+if [ "$flag" == "" ] ; then
 	echo "post got pop3_parser pid fail" >> $RESULT
 	exit 1
 else

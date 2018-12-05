@@ -22,7 +22,7 @@ if [ "$?" != "0" ] ; then
 	exit 1
 fi
 
-git checkout 4.0.5-merge -f >/dev/null 2>/dev/null
+git checkout v5.0 -f >/dev/null 2>/dev/null
 git pull >/dev/null 2>/dev/null
 GIT_COMMIT_VERSION=`git show | grep commit | cut -d ' ' -f 2`
 GIT_REMOTE=`git remote -v| grep fetch | cut -d ' ' -f 1`
@@ -52,7 +52,9 @@ echo "########################################" >> $RESULT
 echo "" >> $RESULT
 
 echo "#################### rebuild nta..." >>$RESULT
-rm -fr build && ./build.sh >/dev/null 2>/dev/null
+echo "pwd $PWD" >>$RESULT
+rm -fr build >/dev/null 2>/dev/null 
+./build.sh >/dev/null 2>/dev/null
 
 cd ${WORK_PATH}/rust/check >/dev/null
 if [ "$?" != "0" ] ; then
@@ -60,8 +62,9 @@ if [ "$?" != "0" ] ; then
 	exit 1
 fi
 
+source ~/.cargo/env
 echo "#################### rebuild rust..." >>$RESULT
-rm -fr ./target >/dev/null 2>/dev/null
+#rm -fr ./target >/dev/null 2>/dev/null
 cargo build >/dev/null 2>/dev/null
 if [ "$?" != "0" ] ; then
 	echo "cargo build rust fail" >> $RESULT

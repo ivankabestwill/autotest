@@ -134,7 +134,8 @@ test_lists()
 		return $bak
 	fi
 
-	list_file="${func_path}/list/list_${flag}"
+	list_file=`ls ${func_path}/list/ | grep list_${flag}`
+	list_file="${func_path}/list/${list_file}"
 	echo "		   -- test list ${list_file}" >>$RESULT
 	test_list ${func_path} ${list_file}
 	if [ "$?" != "0" ] ; then
